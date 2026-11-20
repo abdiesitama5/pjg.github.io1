@@ -1,0 +1,128 @@
+import javax.swing.JOptionPane;
+public static void main(String[] args) {
+
+        int pilihan, masuk, keluar, lama, tarif, biaya;
+        String nama, nim, ulang;
+
+        do {
+            try {
+                pilihan = Integer.parseInt(
+                    JOptionPane.showInputDialog(
+                        "=== SISTEM TARIF PARKIR ===\n"
+                        + "1. Motor \n"
+                        + "2. Mobil\n"
+                        + "3. Karyawan\n"
+                        + "Masukkan pilihan Anda:(cukup angka saja)\n"
+                    )
+                );
+
+                switch (pilihan) {
+
+                    case 1:
+                        masuk = Integer.parseInt(JOptionPane.showInputDialog("Masukkan jam Anda masuk (0-23):"));
+
+                        keluar = Integer.parseInt(JOptionPane.showInputDialog("Masukkan jam Anda keluar (0-23):"));
+
+                        if (masuk < 0 || masuk > 23 ||
+                            keluar < 0 || keluar > 23) {
+                            JOptionPane.showMessageDialog(null, "Jam harus antara 0 sampai 23!");
+                            break;
+                                                        }
+
+                        lama = keluar - masuk;
+                        if (lama < 0) {
+                            lama += 24;
+                                       }
+
+                        tarif = 2000;
+                        biaya = lama * tarif;
+
+                        JOptionPane.showMessageDialog(
+                            null,
+                            "Terima kasih!"
+                            + "Anda sudah parkir selama "
+                            + lama + " jam."
+                            + "Tarif parkir motor Anda sebesar Rp"
+                            + biaya
+                                                      );
+                        break;
+
+                    case 2:
+                        masuk = Integer.parseInt(
+                            JOptionPane.showInputDialog("Masukkan jam Anda masuk (0-23):"));
+
+                        keluar = Integer.parseInt(JOptionPane.showInputDialog("Masukkan jam Anda keluar (0-23):"));
+
+                        if (masuk < 0 || masuk > 23 ||
+                            keluar < 0 || keluar > 23) {
+                            JOptionPane.showMessageDialog(null, "Jam harus antara 0 sampai 23!");
+                            break;
+                                                       }
+
+                        lama = keluar - masuk;
+                        if (lama < 0) {
+                            lama += 24;
+                                      }
+
+                        tarif = 4000;
+                        biaya = lama * tarif;
+
+                        JOptionPane.showMessageDialog(
+                            null,
+                            "Terima kasih!"
+                            + "Anda sudah parkir selama "
+                            + lama + " jam."
+                            + "Tarif parkir mobil Anda sebesar Rp"
+                            + biaya
+                                                     );
+                        break;
+
+                    case 3:
+                        nama = JOptionPane.showInputDialog("Masukkan nama Anda:");
+
+                        nim = JOptionPane.showInputDialog("Masukkan NIM Anda:");
+
+                        JOptionPane.showMessageDialog(
+                            null,
+                            "Selamat " + nama + " (NIM: " + nim + ")!"
+                            + "Anda terdaftar sebagai karyawan."
+                            + "Anda tidak dikenakan tarif parkir."
+                                                     );
+                        break;
+
+                    default:
+                        JOptionPane.showMessageDialog(
+                            null,
+                            "Mohon maaf, jenis kendaraan Anda "
+                            + "belum masuk dalam sistem.\n"
+                            + "Silakan masukkan jenis kendaraan "
+                            + "yang tersedia dalam sistem."
+                                                     );
+                        break;
+                        }
+
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(
+                    null,
+                    "Input tidak valid! Masukkan angka "
+                    + "sesuai pilihan dan jam yang diminta.",
+                    "ERROR",
+                    JOptionPane.ERROR_MESSAGE
+                );
+            }
+
+            ulang = JOptionPane.showInputDialog(
+                "Apakah Anda ingin melanjutkan?"
+                + "Ketik Lanjut untuk mengulang."
+                + "Ketik Cukup untuk berhenti."
+            );
+
+        } while (ulang != null &&
+                 ulang.equalsIgnoreCase("Lanjut"));
+
+        JOptionPane.showMessageDialog(
+            null,
+            "Terima kasih telah menggunakan sistem parkir!"
+        );
+    }
+}
